@@ -7,6 +7,9 @@ const textBox = document.getElementById("textbox");
 
 let user = { message: "", counter: 0 };
 
+chatbotSendMessage("Please choose an option: ")
+initializeOptions();
+
 const arrayOfPossibleMessages = [
   { message: "how are you?", response: "I'm great" },
   { message: "hi", response: "hi!" },
@@ -21,7 +24,7 @@ const arrayOfPossibleMessages = [
   { message: "can you dance?", response: "yes, tango" },
 ];
 
-const questionsToAsk = [
+/* const questionsToAsk = [
   {
     question: "what's your name?",
     answer: "",
@@ -54,7 +57,7 @@ const questionsToAsk = [
     question: "where do you live?",
     answer: "",
   },
-];
+]; */
 
 askQuestion();
 
@@ -126,6 +129,50 @@ function sendMessage(messageText) {
 
   // Scroll to last message
   chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function initializeOptions() {
+  let options = [
+    {
+      number: 1,
+      choice: "Weather",
+    },
+    {
+      number: 2,
+      choice: "Sports",
+    },
+    {
+      number: 3,
+      choice: "News",
+    },
+  ];
+
+  const messageElement = document.createElement("div");
+  messageElement.classList.add("w-50");
+  messageElement.classList.add("float-left");
+  messageElement.classList.add("shadow-sm");
+  messageElement.style.margin = "10px";
+  messageElement.style.padding = "5px";
+
+  for (let i = 0; i < options.length; i++) {
+    messageElement.innerHTML += "<br>"+
+      "<span style=" +
+      "margin-top: 10px; padding: 10px" +
+      ">" +
+      options[i].number +
+      " " +
+      options[i].choice;
+    ("</span>");
+  }
+
+  messageElement.animate(
+    [{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }],
+    { duration: 1000 },
+  );
+
+  chatContainer.appendChild(messageElement);
+
+  chatContainer.appendChild(messageElement);
 }
 
 sendBtn.addEventListener("click", function (e) {
