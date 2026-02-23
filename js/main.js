@@ -34,6 +34,26 @@ const questionsToAsk = [
     question: "what's your job title?",
     answer: "",
   },
+  {
+    question: "how old are you?",
+    answer: "",
+  },
+  {
+    question: "where do you live?",
+    answer: "",
+  },
+  {
+    question: "what's your job title?",
+    answer: "",
+  },
+  {
+    question: "how old are you?",
+    answer: "",
+  },
+  {
+    question: "where do you live?",
+    answer: "",
+  },
 ];
 
 askQuestion();
@@ -76,6 +96,9 @@ function chatbotSendMessage(messageText) {
   chatContainer.appendChild(messageElement);
 
   chatContainer.appendChild(messageElement);
+
+  // Scroll to last message
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 function sendMessage(messageText) {
@@ -100,6 +123,9 @@ function sendMessage(messageText) {
   );
 
   chatContainer.appendChild(messageElement);
+
+  // Scroll to last message
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 sendBtn.addEventListener("click", function (e) {
@@ -111,7 +137,7 @@ sendBtn.addEventListener("click", function (e) {
     sendMessage(messageText);
     textBox.value = "";
 
-    questionsToAsk[user.counter - 1].response = user.message;
+    questionsToAsk[user.counter - 1].answer = user.message;
 
     askQuestion();
     //processMessage();
