@@ -47,9 +47,10 @@ function sendMessage(messageText) {
 
 sendBtn.addEventListener("click", function (e) {
   if (textBox.value == "") {
-    alert('Please type in a message')
+    alert("Please type in a message");
   } else {
     let messageText = textBox.value;
     sendMessage(messageText);
+    textBox.value = "";
   }
 });
