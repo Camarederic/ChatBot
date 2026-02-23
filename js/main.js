@@ -5,8 +5,10 @@ const chatContainer = document.getElementById("chatContainer");
 const sendBtn = document.getElementById("sendBtn");
 const textBox = document.getElementById("textbox");
 
+let user = { message: "" };
+
 setTimeout(function () {
-  chatbotSendMessage("How are you?");
+  chatbotSendMessage("Hi, what is your name?");
 }, 500);
 
 function chatbotSendMessage(messageText) {
@@ -64,7 +66,12 @@ sendBtn.addEventListener("click", function (e) {
     alert("Please type in a message");
   } else {
     let messageText = textBox.value;
+    user.message = messageText;
     sendMessage(messageText);
     textBox.value = "";
+
+    processMessage();
   }
 });
+
+function processMessage() {}
