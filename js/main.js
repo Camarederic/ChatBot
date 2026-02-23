@@ -42,6 +42,11 @@ function sendMessage(messageText) {
     messageText +
     "</span>";
 
+  messageElement.animate(
+    [{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }],
+    { duration: 1000 },
+  );
+
   chatContainer.appendChild(messageElement);
 }
 
