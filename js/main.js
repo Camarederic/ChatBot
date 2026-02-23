@@ -6,6 +6,7 @@ const sendBtn = document.getElementById("sendBtn");
 const textBox = document.getElementById("textbox");
 
 let user = { message: "", counter: 0 };
+let httpRequest;
 
 chatbotSendMessage("Please choose an option: ");
 initializeOptions();
@@ -176,13 +177,46 @@ function initializeOptions() {
   chatContainer.appendChild(messageElement);
 }
 
+function handleWeatherResponse() {
+  if (httpRequest.readyState === XMLHttpRequest.DONE) {
+    if (httpRequest.status === 200) {
+      console.log(httpRequest.responseText);
+    } else {
+      alert("There was an unexpected error.");
+    }
+  }
+}
+
+function getWeatherRequest(lat, long) {
+  httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = handleWeatherResponse;
+  httpRequest.open("GET", "");
+  httpRequest.send();
+}
+
+function getLocationAndWeather() {
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      let lat = pos.coords.latitude;
+      let long = pos.coords.longitude;
+
+      getWeatherRequest(lat, long);
+    },
+    (err) => {
+      console.log(err);
+    },
+  );
+}
+
 function assistantResponse(messageText) {
   let userChoice = parseInt(messageText.trim());
 
   switch (userChoice) {
     case 1:
       // get weather
-      alert("you choose weather");
+      //alert("you choose weather");
+      // get location then weather
+      getLocationAndWeather();
       break;
     case 2:
       // get sports news
