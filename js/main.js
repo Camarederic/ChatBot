@@ -5,7 +5,9 @@ const chatContainer = document.getElementById("chatContainer");
 const sendBtn = document.getElementById("sendBtn");
 const textBox = document.getElementById("textbox");
 
-chatbotSendMessage("Hi from Chatbot!");
+setTimeout(function () {
+  chatbotSendMessage("How are you?");
+}, 500);
 
 function chatbotSendMessage(messageText) {
   const messageElement = document.createElement("div");
@@ -22,6 +24,13 @@ function chatbotSendMessage(messageText) {
     ">" +
     messageText +
     "</span>";
+
+  messageElement.animate(
+    [{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }],
+    { duration: 1000 },
+  );
+
+  chatContainer.appendChild(messageElement);
 
   chatContainer.appendChild(messageElement);
 }
