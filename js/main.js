@@ -7,7 +7,7 @@ const textBox = document.getElementById("textbox");
 
 let user = { message: "", counter: 0 };
 
-chatbotSendMessage("Please choose an option: ")
+chatbotSendMessage("Please choose an option: ");
 initializeOptions();
 
 const arrayOfPossibleMessages = [
@@ -59,7 +59,7 @@ const arrayOfPossibleMessages = [
   },
 ]; */
 
-askQuestion();
+/* askQuestion();
 
 function askQuestion() {
   if (questionsToAsk.length > user.counter) {
@@ -69,7 +69,7 @@ function askQuestion() {
     }, 1000);
     console.log(questionsToAsk[user.counter - 1]);
   }
-}
+} */
 
 /* setTimeout(function () {
   chatbotSendMessage("Hi, what is your name?");
@@ -155,7 +155,8 @@ function initializeOptions() {
   messageElement.style.padding = "5px";
 
   for (let i = 0; i < options.length; i++) {
-    messageElement.innerHTML += "<br>"+
+    messageElement.innerHTML +=
+      "<br>" +
       "<span style=" +
       "margin-top: 10px; padding: 10px" +
       ">" +
@@ -175,6 +176,27 @@ function initializeOptions() {
   chatContainer.appendChild(messageElement);
 }
 
+function assistantResponse(messageText) {
+  let userChoice = parseInt(messageText.trim());
+
+  switch (userChoice) {
+    case 1:
+      // get weather
+      alert("you choose weather");
+      break;
+    case 2:
+      // get sports news
+      alert("you choose sports");
+      break;
+    case 3:
+      // get general news
+      alert("you choose news");
+      break;
+    default:
+      alert("default");
+  }
+}
+
 sendBtn.addEventListener("click", function (e) {
   if (textBox.value == "") {
     alert("Please type in a message");
@@ -184,10 +206,12 @@ sendBtn.addEventListener("click", function (e) {
     sendMessage(messageText);
     textBox.value = "";
 
-    questionsToAsk[user.counter - 1].answer = user.message;
+    //questionsToAsk[user.counter - 1].answer = user.message;
 
-    askQuestion();
+    //askQuestion();
     //processMessage();
+
+    assistantResponse(messageText);
   }
 });
 
