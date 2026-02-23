@@ -5,7 +5,7 @@ const chatContainer = document.getElementById("chatContainer");
 const sendBtn = document.getElementById("sendBtn");
 const textBox = document.getElementById("textbox");
 
-let user = { message: "" };
+let user = { message: "", counter: 0 };
 
 const arrayOfPossibleMessages = [
   { message: "how are you?", response: "I'm great" },
@@ -21,9 +21,33 @@ const arrayOfPossibleMessages = [
   { message: "can you dance?", response: "yes, tango" },
 ];
 
-setTimeout(function () {
+const questionsToAsk = [
+  {
+    question: "what's your name?",
+    answer: "",
+  },
+  {
+    question: "hoe old are you?",
+    answer: "",
+  },
+  {
+    question: "what's your job title?",
+    answer: "",
+  },
+];
+
+askQuestion();
+
+function askQuestion() {
+  setTimeout(function () {
+    chatbotSendMessage(questionsToAsk[user.counter].question);
+    user.counter++;
+  }, 1000);
+}
+
+/* setTimeout(function () {
   chatbotSendMessage("Hi, what is your name?");
-}, 500);
+}, 500); */
 
 function chatbotSendMessage(messageText) {
   const messageElement = document.createElement("div");
@@ -84,7 +108,8 @@ sendBtn.addEventListener("click", function (e) {
     sendMessage(messageText);
     textBox.value = "";
 
-    processMessage();
+    askQuestion();
+    //processMessage();
   }
 });
 
