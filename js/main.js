@@ -7,6 +7,12 @@ const textBox = document.getElementById("textbox");
 
 let user = { message: "" };
 
+const arrayOfPossibleMessages = [
+  { message: "how are you?", response: "I'm great" },
+  { message: "hi", response: "hi!" },
+  { message: "who are you?", response: "I'm your assistant" },
+];
+
 setTimeout(function () {
   chatbotSendMessage("Hi, what is your name?");
 }, 500);
@@ -74,4 +80,12 @@ sendBtn.addEventListener("click", function (e) {
   }
 });
 
-function processMessage() {}
+function processMessage() {
+  // Array of results
+  const result = arrayOfPossibleMessages.filter((val) =>
+    val.message.includes(user.message.toLowerCase()),
+  );
+  const response = result[0].response;
+
+  chatbotSendMessage(response)
+}
