@@ -27,7 +27,7 @@ const questionsToAsk = [
     answer: "",
   },
   {
-    question: "hoe old are you?",
+    question: "how old are you?",
     answer: "",
   },
   {
@@ -39,10 +39,13 @@ const questionsToAsk = [
 askQuestion();
 
 function askQuestion() {
-  setTimeout(function () {
-    chatbotSendMessage(questionsToAsk[user.counter].question);
-    user.counter++;
-  }, 1000);
+  if (questionsToAsk.length > user.counter) {
+    setTimeout(function () {
+      chatbotSendMessage(questionsToAsk[user.counter].question);
+      user.counter++;
+    }, 1000);
+    console.log(questionsToAsk[user.counter - 1]);
+  }
 }
 
 /* setTimeout(function () {
@@ -107,6 +110,8 @@ sendBtn.addEventListener("click", function (e) {
     user.message = messageText;
     sendMessage(messageText);
     textBox.value = "";
+
+    questionsToAsk[user.counter - 1].response = user.message;
 
     askQuestion();
     //processMessage();
