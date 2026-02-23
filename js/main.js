@@ -87,5 +87,7 @@ function processMessage() {
   );
   const response = result[0].response;
 
-  chatbotSendMessage(response)
+  setTimeout(function () {
+    chatbotSendMessage(response);
+  }, 1000);
 }
