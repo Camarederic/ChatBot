@@ -85,9 +85,16 @@ function processMessage() {
   const result = arrayOfPossibleMessages.filter((val) =>
     val.message.includes(user.message.toLowerCase()),
   );
-  const response = result[0].response;
 
-  setTimeout(function () {
-    chatbotSendMessage(response);
-  }, 1000);
+  if (result.length > 0) {
+    const response = result[0].response;
+
+    setTimeout(function () {
+      chatbotSendMessage(response);
+    }, 1000);
+  } else {
+    setTimeout(function () {
+      chatbotSendMessage("I don't understand");
+    }, 1000);
+  }
 }
