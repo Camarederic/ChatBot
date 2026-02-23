@@ -11,6 +11,14 @@ const arrayOfPossibleMessages = [
   { message: "how are you?", response: "I'm great" },
   { message: "hi", response: "hi!" },
   { message: "who are you?", response: "I'm your assistant" },
+  { message: "what's your name?", response: "I'm a chatbot" },
+  { message: "what is your name?", response: "I'm a chatbot" },
+  { message: "how old are you?", response: "I'm ageless" },
+  { message: "do you have kids?", response: "No I don't" },
+
+  { message: "do you sleep early?", response: "No I don't" },
+  { message: "do you have a car?", response: "I travel th, rough space :)" },
+  { message: "can you dance?", response: "yes, tango" },
 ];
 
 setTimeout(function () {
@@ -81,20 +89,30 @@ sendBtn.addEventListener("click", function (e) {
 });
 
 function processMessage() {
-  // Array of results
-  const result = arrayOfPossibleMessages.filter((val) =>
-    val.message.includes(user.message.toLowerCase()),
-  );
+  if (user.message.length > 5) {
+    // Array of results
+    const result = arrayOfPossibleMessages.filter((val) =>
+      val.message.includes(user.message.toLowerCase()),
+    );
 
-  if (result.length > 0) {
-    const response = result[0].response;
+    if (result.length > 0) {
+      const response = result[0].response;
 
+      setTimeout(function () {
+        chatbotSendMessage(response);
+      }, 1000);
+    } else {
+      setTimeout(function () {
+        chatbotSendMessage("I don't understand");
+      }, 1000);
+    }
+  } else if (user.message == "how" || user.message == "who") {
     setTimeout(function () {
-      chatbotSendMessage(response);
+      chatbotSendMessage("?");
     }, 1000);
   } else {
     setTimeout(function () {
-      chatbotSendMessage("I don't understand");
+      chatbotSendMessage("Please send me a complete sentence");
     }, 1000);
   }
 }
